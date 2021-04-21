@@ -13,8 +13,8 @@ class Photogallerydashboard extends Component {
     }
 
     componentDidMount() {
-        const result = []
         firestore.collection('images').orderBy('uploadedAt').onSnapshot((snap) => {
+            const result = []
             snap.forEach((image) => {
                 result.push({...image.data(), id: image.id})
             })

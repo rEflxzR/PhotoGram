@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import { useMediaQuery } from "@material-ui/core";
 import { imageStorage, firestore, timestamp } from '../firebase/config'
 import LinearProgressWithLabel from './Progressmeter'
+
+
+// const isSmallScreen = useMediaQuery(theme => theme.breakpoints.down("xs"));
+// const buttonProps = {
+//     variant: isSmallScreen ? "text" : "outlined",
+//     size: isSmallScreen ? "small" : "large"
+// };
+
 
 class Imageform extends Component {
     constructor(props) {
@@ -48,16 +57,16 @@ class Imageform extends Component {
     render() {
         const {imageFile, invalidFile, uploadPercent, showProgressMeter} = this.state
         return (
-            <div className="mx-auto" style={{ width: '40vw' }}>
-                <form>
-                    <span className="mr-3">
+            <div className="mx-auto" style={{ width: '80vw' }}>
+                <form id="image-form">
+                    <span className="mr-2">
                         <input accept="image/*" hidden id="image-upload-button" type="file" onChange={this.handleImageUpload}/>
                         <label htmlFor="image-upload-button">
-                            <Button size="large" variant="contained" color="primary" component="span"><strong>Upload an Image</strong></Button>
+                            <Button size="large" variant="contained" color="primary" component="span"><strong>Upload</strong></Button>
                         </label>
                     </span>
                     <span>
-                        <TextField style={{ width: '60%' }} error={invalidFile ? true : false} helperText={invalidFile ? "Please Choose a PNG or JPEG File" : ""} value={imageFile ? imageFile.name : ""}></TextField>
+                        <TextField style={{ width: '80%' }} error={invalidFile ? true : false} helperText={invalidFile ? "Please Choose a PNG or JPEG File" : ""} value={imageFile ? imageFile.name : ""}></TextField>
                     </span>
                 </form>
                 <div className="progressmeter my-3" style={{ display: showProgressMeter ? 'block' : 'none' }}>

@@ -8,34 +8,58 @@
 
 /* base styles & title */
 body{
-  font-family: "Noto Serif";
-  color: var(--secondary);
+  	font-family: "Noto Serif";
+  	color: var(--secondary);
 }
 .App{
-  max-width: 960px;
-  margin: 0 auto;
+  	max-width: 100vw;
 }
 .title h1{
-  color: var(--primary);
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  font-weight: normal;
+  	color: var(--primary);
+  	font-size: 1.2rem;
+  	letter-spacing: 2px;
+  	font-weight: normal;
 }
 .title h2, .title p{
-  text-align: center;
+  	text-align: center;
 }
 .title h2{
-  margin-top: 60px;
-  font-size: 2.6rem;
+  	margin-top: 60px;
+  	font-size: 2.6rem;
 }
 
-/* upload form styles */
+#image-form {
+	width: 100%;
+	padding-left: 5%;
+	padding-right: 5%;
+}
 
+.image-grid {
+	width: 80vw;
+	margin-left: auto;
+	margin-right: auto;
+}
 
-/* progress bar styles */
+.imagerow {
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 
+.imagediv {
+	max-height: 35vh;
+	min-height: 35vh;
+	width: 100%;
+	margin: 10px;
+	padding: 0;
+	display: inline-block;
+	border: solid 2px black;
+}
 
-/* image grid styles */
-
-
-/* modal styles */
+img {
+	max-height: 100%;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+}
