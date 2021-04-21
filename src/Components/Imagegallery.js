@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class Imagegallery extends Component {
     render() {
         const { imagesData } = this.props
-        const rowsNum = Math.ceil(imagesData.length/4)
+        const rowsNum = Math.ceil(imagesData.length/3)
         return(
             <div className="image-grid">
                 {
