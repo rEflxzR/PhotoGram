@@ -50,6 +50,7 @@ class Imageform extends Component {
     }
 
     render() {
+        const {classes} = this.props
         const {imageFile, invalidFile, uploadPercent, showProgressMeter} = this.state
         const { darkMode } = this.context
 
@@ -59,11 +60,11 @@ class Imageform extends Component {
                     <span className="mr-2">
                         <input accept="image/*" hidden id="image-upload-button" type="file" onChange={this.handleImageUpload}/>
                         <label htmlFor="image-upload-button">
-                            <Button id={darkMode ? "uploadButton-dark":"uploadButton"} size="small" variant="contained" color="primary" component="span"><strong>Upload</strong></Button>
+                            <Button id={darkMode ? "uploadButton-dark":"uploadButton"} size="large" variant="contained" component="span"><strong>Upload</strong></Button>
                         </label>
                     </span>
                     <span>
-                        <TextField id={darkMode ? "textfield-dark":"textfield"} style={{ width: '70%' }} error={invalidFile ? true : false} 
+                        <TextField id={darkMode ? "textfield-dark":"textfield"} style={{ width: '60%' }} error={invalidFile ? true : false} 
                         helperText={invalidFile ? "Please Choose a PNG or JPEG File" : ""} value={imageFile ? imageFile.name : ""} disabled={darkMode ? true : false}></TextField>
                     </span>
                 </form>

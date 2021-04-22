@@ -44,8 +44,13 @@ body{
 	border-bottom: solid 2px white;
 }
 
+#uploadButton {
+	background-color: #8ac280;
+	color: black;
+}
+
 #uploadButton-dark {
-	background-color: #93faa5;
+	background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
 	color: black;
 }
 
