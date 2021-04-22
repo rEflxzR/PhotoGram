@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Photogallerydashboard from './Components/Dashboard'
-import { ThemeContext, ThemeProvider } from './Context/Themecontext'
+import { ThemeProvider } from './Context/Themecontext'
 import Pagecontent from './Components/Pagecontent'
 import Signupform from './Components/Signupform'
 import {auth} from './firebase/config'
@@ -26,7 +26,7 @@ class App extends Component {
 					{
 						this.state.user ? (<ThemeProvider>
 							<Pagecontent>
-								<Photogallerydashboard />
+							<Photogallerydashboard userData={this.state.user} />
 							</Pagecontent>
 						</ThemeProvider>) : (<Signupform />)
 					}

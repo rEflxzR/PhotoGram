@@ -14,7 +14,8 @@ class Photogallerydashboard extends Component {
     }
 
     componentDidMount() {
-        firestore.collection('images').orderBy('uploadedAt').onSnapshot((snap) => {
+        const collectionName = this.props.userData.email && this.props.userData.uid ? this.props.userData.uid : 'anonnymous'
+        firestore.collection(`users/${collectionName}/images`).orderBy('uploadedAt').onSnapshot((snap) => {
             const result = []
             snap.forEach((image) => {
                 result.push({...image.data(), id: image.id})
@@ -25,10 +26,12 @@ class Photogallerydashboard extends Component {
     }
 
     render() {
+        const { email, uid, displayName } = this.props.userData
+
         return (
             <div>
-                <Title />
-                <Imageform />
+                <Title username={displayName} />
+                <Imageform userEmail={email} userId={uid} />
                 <Imagegallery imagesData={this.state.userPhotos} />
             </div>
         )

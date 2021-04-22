@@ -29,7 +29,8 @@ class Imageform extends Component {
             this.setState({ imageFile: selectedImage, invalidFile: false, showProgressMeter: true })
 
             const storageRef = imageStorage.ref(selectedImage.name)
-            const imagesURLCollection = firestore.collection('images')
+            const collectionName = this.props.userEmail && this.props.userId ? `${this.props.userId}` : 'anonnymous'
+            const imagesURLCollection = firestore.collection(`users/${collectionName}/images`)
 
             storageRef.put(selectedImage).on('state_changed', (snap) => {
                 const percent = (snap.bytesTransferred/snap.totalBytes)*100

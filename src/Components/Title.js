@@ -43,7 +43,7 @@ class Title extends Component {
     }
 
     render() {
-        const {classes} = this.props
+        const {classes, username} = this.props
         const {anchorElement} = this.state
         const { darkMode, toggleTheme } = this.context
 
@@ -80,7 +80,8 @@ class Title extends Component {
                     </Toolbar>
                 </AppBar>
 
-                <h2 className={"text-center my-5 " + (darkMode ? "text-light":"text-dark")}>Your PIXIEST Pics Collection</h2>
+                <h1 className={"text-center mt-5 mb-2 " + (darkMode ? "text-light":"text-dark")}>WELCOME, <strong>{username ? username.split(" ")[0] : "Stranger"} :)</strong></h1>
+                <h2 className={"text-center mt-2 mb-5 " + (darkMode ? "text-light":"text-dark")}>To {username ? "Your" : "the"} PIXIEST Collection of Pics</h2>
             </div>
         )
     }

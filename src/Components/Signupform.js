@@ -28,6 +28,11 @@ class Signupform extends Component {
 
         this.googleSignIn = this.googleSignIn.bind(this)
         this.githubSignIn = this.githubSignIn.bind(this)
+        this.freeSignIn = this.freeSignIn.bind(this)
+    }
+
+    freeSignIn() {
+        auth.signInAnonymously()
     }
 
     googleSignIn() {
@@ -45,7 +50,7 @@ class Signupform extends Component {
                     <form className="signupform">
                         <h1 className="text-dark text-center my-3">Welcome to PHOTOGram</h1>
                         <div className="signupform-buttons my-2">
-                            <FreeButton size="large" variant="contained" color="primary"><strong>Try it for Free</strong></FreeButton>
+                            <FreeButton onClick={this.freeSignIn} size="large" variant="contained" color="primary"><strong>Try it for Free</strong></FreeButton>
                         </div>
                         <div className="signupform-buttons my-2">
                             <GoogleButton onClick={this.googleSignIn} size="large" variant="contained" color="primary"><strong>Sign in with Google</strong></GoogleButton>
