@@ -50,7 +50,6 @@ class Imageform extends Component {
     }
 
     render() {
-        const {classes} = this.props
         const {imageFile, invalidFile, uploadPercent, showProgressMeter} = this.state
         const { darkMode } = this.context
 

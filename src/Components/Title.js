@@ -14,6 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import styles from '../styles/navbarstyles'
 import { Switch } from '@material-ui/core'
 import {ThemeContext} from '../Context/Themecontext'
+import { auth } from '../firebase/config'
 
 class Title extends Component {
     static contextType = ThemeContext
@@ -26,6 +27,7 @@ class Title extends Component {
 
         this.handleMenuButtonClick = this.handleMenuButtonClick.bind(this)
         this.handleMenuButtonClose = this.handleMenuButtonClose.bind(this)
+        this.handleLogoutButton = this.handleLogoutButton.bind(this)
     }
 
     handleMenuButtonClick(evt) {
@@ -34,6 +36,10 @@ class Title extends Component {
 
     handleMenuButtonClose() {
         this.setState({ anchorElement: null })
+    }
+
+    handleLogoutButton() {
+        auth.signOut()
     }
 
     render() {
@@ -51,7 +57,7 @@ class Title extends Component {
                                 label="Theme" labelPlacement="bottom"
                             />
                             <Tabs className={classes.tabs} value={"logout"} aria-label="simple tabs example">
-                                <Tab icon={<PersonPinIcon fontSize="large" />} label="logout" />
+                                <Tab onClick={this.handleLogoutButton} icon={<PersonPinIcon fontSize="large" />} label="logout" />
                             </Tabs>
                         </div>
 
@@ -66,7 +72,7 @@ class Title extends Component {
                                 </MenuItem>
                                 <MenuItem className={classes.menuItem}>
                                     <Tabs className={classes.tabs} value={"logout"} aria-label="simple tabs example">
-                                        <Tab icon={<PersonPinIcon fontSize="small" />} label="logout" />
+                                        <Tab onClick={this.handleLogoutButton} icon={<PersonPinIcon fontSize="small" />} label="logout" />
                                     </Tabs>
                                 </MenuItem>
                             </Menu>
