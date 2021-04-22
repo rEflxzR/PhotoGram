@@ -13,17 +13,41 @@ import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import styles from '../styles/navbarstyles'
 import { Switch } from '@material-ui/core'
+import {ThemeContext} from '../Context/Themecontext'
 
 class Title extends Component {
+    static contextType = ThemeContext
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            anchorElement: null
+        }
+
+        this.handleMenuButtonClick = this.handleMenuButtonClick.bind(this)
+        this.handleMenuButtonClose = this.handleMenuButtonClose.bind(this)
+    }
+
+    handleMenuButtonClick(evt) {
+        this.setState({ anchorElement: evt.currentTarget })
+    }
+
+    handleMenuButtonClose() {
+        this.setState({ anchorElement: null })
+    }
+
     render() {
         const {classes} = this.props
+        const {anchorElement} = this.state
+        const { darkMode, toggleTheme } = this.context
+
         return(
             <div className="title">
-                <AppBar className={classes.root} color="primary" position="static">
+                <AppBar className={classes.root} color={darkMode ? "default" : "primary"} position="static">
                     <Toolbar className="toolbar">
-                        <Typography className={classes.title} color="inherit"><em>PhotoGram</em></Typography>
+                        <Typography className={classes.title} color="inherit"><em>JanzWE's PhotoGram</em></Typography>
                         <div className={classes.normalMenu}>
-                            <FormControlLabel className={classes.switchIcon} value="bottom" control={<Switch color="secondary" />} 
+                            <FormControlLabel className={classes.switchIcon} value="bottom" control={<Switch onChange={toggleTheme} color="secondary" />} 
                                 label="Theme" labelPlacement="bottom"
                             />
                             <Tabs className={classes.tabs} value={"logout"} aria-label="simple tabs example">
@@ -33,12 +57,12 @@ class Title extends Component {
 
                         {/* Hamburger Menu Only Upto Medium Width Devices */}
                         <div className={classes.hamburgerMenu}>
-                            <Button aria-controls="simple-menu" aria-haspopup="true">
+                            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleMenuButtonClick}>
                                 <MenuIcon />
                             </Button>
-                            <Menu id="simple-menu" open={true} keepMounted>
+                            <Menu id="simple-menu" open={Boolean(anchorElement)} onClose={this.handleMenuButtonClose} keepMounted anchorEl={anchorElement}>
                                 <MenuItem className={classes.menuItem}>
-                                    <FormControlLabel className={classes.switchIcon} value="bottom" control={<Switch color="secondary" />} label="Toggle Theme" labelPlacement="bottom"/>
+                                    <FormControlLabel className={classes.switchIcon} value="bottom" control={<Switch onChange={toggleTheme} color="secondary" />} label="Toggle Theme" labelPlacement="bottom"/>
                                 </MenuItem>
                                 <MenuItem className={classes.menuItem}>
                                     <Tabs className={classes.tabs} value={"logout"} aria-label="simple tabs example">
@@ -49,7 +73,8 @@ class Title extends Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-                <h2>Your Pictures</h2>
+
+                <h2 className={"text-center my-5 " + (darkMode ? "text-light":"text-dark")}>Your PIXIEST Pics Collection</h2>
             </div>
         )
     }

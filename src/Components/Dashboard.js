@@ -5,6 +5,7 @@ import Imagegallery from './Imagegallery'
 import { firestore } from '../firebase/config'
 
 class Photogallerydashboard extends Component {
+
     constructor(props) {
         super(props)
         this.state = {

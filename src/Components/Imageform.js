@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import { ThemeContext } from '../Context/Themecontext'
 import { imageStorage, firestore, timestamp } from '../firebase/config'
 import LinearProgressWithLabel from './Progressmeter'
 
 
 class Imageform extends Component {
+    static contextType = ThemeContext
+
     constructor(props) {
         super(props)
         this.state = {
@@ -48,17 +51,20 @@ class Imageform extends Component {
 
     render() {
         const {imageFile, invalidFile, uploadPercent, showProgressMeter} = this.state
+        const { darkMode } = this.context
+
         return (
             <div className="mx-auto form-div">
                 <form id="image-form">
                     <span className="mr-2">
                         <input accept="image/*" hidden id="image-upload-button" type="file" onChange={this.handleImageUpload}/>
                         <label htmlFor="image-upload-button">
-                            <Button size="small" variant="contained" color="primary" component="span"><strong>Upload</strong></Button>
+                            <Button id={darkMode ? "uploadButton-dark":"uploadButton"} size="small" variant="contained" color="primary" component="span"><strong>Upload</strong></Button>
                         </label>
                     </span>
                     <span>
-                        <TextField style={{ width: '70%' }} error={invalidFile ? true : false} helperText={invalidFile ? "Please Choose a PNG or JPEG File" : ""} value={imageFile ? imageFile.name : ""}></TextField>
+                        <TextField id={darkMode ? "textfield-dark":"textfield"} style={{ width: '70%' }} error={invalidFile ? true : false} 
+                        helperText={invalidFile ? "Please Choose a PNG or JPEG File" : ""} value={imageFile ? imageFile.name : ""} disabled={darkMode ? true : false}></TextField>
                     </span>
                 </form>
                 <div className="progressmeter mt-4" style={{ display: showProgressMeter ? 'block' : 'none' }}>

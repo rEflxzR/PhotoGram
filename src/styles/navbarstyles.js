@@ -3,17 +3,17 @@ const styles = (theme) => ({
         width: "100%"
     },
     title: {
-        width: "95%",
+        width: "100%",
         display: "inline",
         textAlign: "center",
         marginTop: "auto",
         marginBottom: "auto",
         [theme.breakpoints.up('xs')]: {
-            fontSize: 35,
+            fontSize: 20,
             fontWeight: "bold"
         },
         [theme.breakpoints.up('lg')]: {
-            fontSize: 50,
+            fontSize: 60,
             fontWeight: "bold"
         }
     },
