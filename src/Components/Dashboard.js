@@ -32,7 +32,7 @@ class Photogallerydashboard extends Component {
             <div>
                 <Title username={displayName} />
                 <Imageform userEmail={email} userId={uid} />
-                <Imagegallery imagesData={this.state.userPhotos} />
+                <Imagegallery userEmail={email} userId={uid} imagesData={this.state.userPhotos} />
             </div>
         )
     }

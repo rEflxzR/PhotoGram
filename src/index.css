@@ -153,6 +153,32 @@ body{
 	border: solid 2px white;
 }
 
+.imagediv:hover {
+	opacity: 0.7;
+}
+
+.imagediv:hover .image-delete {
+	display: flex;
+	justify-content: flex-end;
+	opacity: 1;
+}
+
+
+.imagediv-dark:hover {
+	opacity: 0.7;
+}
+
+.imagediv-dark:hover .image-delete {
+	display: flex;
+	justify-content: flex-end;
+	opacity: 1;
+}
+
+
+.image-delete {
+	display: none;
+}
+
 
 
 

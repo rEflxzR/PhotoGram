@@ -39,7 +39,7 @@ class Imageform extends Component {
                 console.log(err)
             }, async() => {
                 const imageURL = await storageRef.getDownloadURL()
-                imagesURLCollection.add({ url: imageURL, uploadedAt: timestamp() })
+                imagesURLCollection.add({ url: imageURL, imageName: selectedImage.name, uploadedAt: timestamp() })
                 this.setState({ imageFile: null, showProgressMeter: false, uploadPercent: null })
             })
         }
