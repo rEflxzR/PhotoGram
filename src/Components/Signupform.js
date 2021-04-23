@@ -56,7 +56,7 @@ class Signupform extends Component {
                             <GoogleButton onClick={this.googleSignIn} size="large" variant="contained" color="primary"><strong>Sign in with Google</strong></GoogleButton>
                         </div>
                         <div className="signupform-buttons my-2">
-                            <GithubButton onClick={this.githubSignIn} size="large" variant="contained" color="primary">Sign in with Github</GithubButton>
+                            <GithubButton onClick={this.githubSignIn} size="large" variant="contained" color="primary"><strong>Sign in with Github</strong></GithubButton>
                         </div>
                     </form>
                 </div>
