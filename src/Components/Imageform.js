@@ -65,7 +65,7 @@ class Imageform extends Component {
                     </span>
                     <span>
                         <TextField id={darkMode ? "textfield-dark":"textfield"} style={{ width: '60%' }} error={invalidFile ? true : false} 
-                        helperText={invalidFile ? "Please Choose a PNG or JPEG File" : ""} value={imageFile ? imageFile.name : ""} disabled={darkMode ? true : false}></TextField>
+                        helperText={invalidFile ? "Please Choose a PNG or JPEG File" : ""} value={imageFile ? imageFile.name : ""} disabled={true}></TextField>
                     </span>
                 </form>
                 <div className="progressmeter mt-4" style={{ display: showProgressMeter ? 'block' : 'none' }}>

@@ -3,14 +3,30 @@ import Button from '@material-ui/core/Button'
 import CloseIcon from '@material-ui/icons/Close';
 import { imageStorage, firestore } from '../firebase/config'
 import { ThemeContext } from '../Context/Themecontext'
+import Modal from './Modal'
 
 class Imagegallery extends Component {
     static contextType = ThemeContext
 
     constructor(props) {
         super(props)
+        this.state = {
+            showModal: false,
+            selectedImage: null
+        }
 
+        this.closeModal = this.closeModal.bind(this)
+        this.handleImageClick = this.handleImageClick.bind(this)
         this.handleDeleteButtonClick = this.handleDeleteButtonClick.bind(this)
+    }
+
+    handleImageClick(evt) {
+        const imageUrl = evt.currentTarget.getAttribute("src")
+        this.setState({ showModal: true, selectedImage: imageUrl })
+    }
+
+    closeModal() {
+        this.setState({ selectedImage: null, showModal: false })
     }
 
     handleDeleteButtonClick(evt) {
@@ -24,17 +40,10 @@ class Imagegallery extends Component {
         firestore.collection(`users/${collectionName}/images`).doc(`${document}`).delete();
 
         storageRef.delete()
-        .then(() => {
-            console.log("SUCCESS")
-        })
-        .catch((err) => {
-            console.log("FAILED")
-            console.log(err)
-        })
-
     }
 
     render() {
+        const { showModal, selectedImage } = this.state
         const { imagesData } = this.props
         const rowsNum = Math.ceil(imagesData.length/3)
         const { darkMode } = this.context
@@ -47,7 +56,7 @@ class Imagegallery extends Component {
                             {
                                 imagesData.slice(index*3, index*3+3).map((image) => {
                                     return <div key={image.id} className={"col col-12 col-lg-3 " + (darkMode ? "imagediv-dark":"imagediv")}>
-                                        <img src={image.url} alt="User Uploaded Pic" />
+                                        <img onClick={this.handleImageClick} src={image.url} alt="User Uploaded Pic" />
                                         <div className="image-delete">
                                             <Button onClick={this.handleDeleteButtonClick} imageId={image.id} imageName={image.imageName} variant="contained" color="secondary"><CloseIcon fontSize="large" color="default"></CloseIcon></Button>
                                         </div>
@@ -57,6 +66,7 @@ class Imagegallery extends Component {
                         </div>
                     })
                 }
+                {showModal ? (<Modal imgSrc={selectedImage} closeModal={this.closeModal} />) : (null)}
             </div>
         )
     }
