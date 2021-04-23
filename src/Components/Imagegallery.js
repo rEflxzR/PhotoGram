@@ -25,8 +25,10 @@ class Imagegallery extends Component {
         this.setState({ showModal: true, selectedImage: imageUrl })
     }
 
-    closeModal() {
-        this.setState({ selectedImage: null, showModal: false })
+    closeModal(evt) {
+        if(evt.currentTarget===evt.target) {
+            this.setState({ selectedImage: null, showModal: false })
+        }
     }
 
     handleDeleteButtonClick(evt) {
