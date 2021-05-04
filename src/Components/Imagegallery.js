@@ -47,27 +47,23 @@ class Imagegallery extends Component {
     render() {
         const { showModal, selectedImage } = this.state
         const { imagesData } = this.props
-        const rowsNum = Math.ceil(imagesData.length/3)
         const { darkMode } = this.context
 
         return(
             <div className="image-grid">
-                {
-                    [...new Array(rowsNum)].map((row, index) => {
-                        return <div className="row imagerow">
-                            {
-                                imagesData.slice(index*3, index*3+3).map((image) => {
-                                    return <div key={image.id} className={"col col-12 col-lg-3 " + (darkMode ? "imagediv-dark":"imagediv")}>
-                                        <img onClick={this.handleImageClick} src={image.url} alt="User Uploaded Pic" />
-                                        <div className="image-delete">
-                                            <Button onClick={this.handleDeleteButtonClick} imageId={image.id} imageName={image.imageName} variant="contained" color="secondary"><CloseIcon fontSize="large" color="default"></CloseIcon></Button>
-                                        </div>
-                                    </div>
-                                })
-                            }
-                        </div>
-                    })
-                }
+                <div className="row imagerow">
+                    {
+                        imagesData.map((image) => {
+                            return <div key={image.id} className={"col col-12 col-lg-3 " + (darkMode ? "imagediv-dark":"imagediv")}>
+                                <img id={`${darkMode ? "imagedark":"imagelight"}`} onClick={this.handleImageClick} src={image.url} alt="User Uploaded Pic" />
+                                <div className="image-delete">
+                                    <Button onClick={this.handleDeleteButtonClick} imageId={image.id} imageName={image.imageName} variant="contained" color="secondary"><CloseIcon fontSize="large" color="default"></CloseIcon></Button>
+                                </div>
+                            </div> 
+                        })
+                    }
+                </div>
+
                 {showModal ? (<Modal imgSrc={selectedImage} closeModal={this.closeModal} />) : (null)}
             </div>
         )
